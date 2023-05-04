@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rn-monorepo-nx/models": ["libs/models/src/index.ts"]
+      "@rn-monorepo-nx/models": ["libs/models/src/index.ts"],
+      "@rn-monorepo-nx/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
