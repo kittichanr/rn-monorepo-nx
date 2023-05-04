@@ -13,7 +13,6 @@ import {
 import Svg, { Path } from "react-native-svg";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
   const scrollViewRef = useRef<null | ScrollView>(null);
