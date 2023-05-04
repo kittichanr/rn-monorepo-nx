@@ -7,7 +7,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { AdhZodiacSignItem } from '@rn-monorepo-nx/models';
-import { RootState } from '../root/interface';
+import { RootState } from '../root/types';
 
 export const HOROSCOPE_FEATURE_KEY = 'horoscope';
 

@@ -3,17 +3,22 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "*",
+    "@rneui/base": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
+    "metro-config": "*",
     "react": "*",
     "react-native": "*",
-    "react-native-svg": "*",
-    "metro-config": "*",
-    "@rneui/base": "*",
     "react-native-gesture-handler": "*",
     "react-native-reanimated": "*",
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
-    "react-native-vector-icons": "*"
+    "react-native-svg": "*",
+    "react-native-vector-icons": "^9.2.0",
+    "react-redux": "*",
+    "redux-logger": "*",
+    "@react-native-async-storage/async-storage": "*",
+    "react-native-devsettings": "*"
   }
 }
