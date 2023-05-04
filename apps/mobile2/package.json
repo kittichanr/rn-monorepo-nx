@@ -1,0 +1,18 @@
+{
+  "name": "mobile2",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-native": "*",
+    "@testing-library/react-native": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-svg": "*",
+    "metro-config": "*",
+    "@rneui/base": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*"
+  }
+}
