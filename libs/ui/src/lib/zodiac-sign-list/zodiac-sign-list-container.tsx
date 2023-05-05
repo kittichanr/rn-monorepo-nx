@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import {
   AdhZodiacSignItem,
   AdhZodiacSignList,
+  AppRoutes,
 } from '@rn-monorepo-nx/models';
 import { ListItem } from '@rneui/base';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,13 +13,13 @@ import { useNavigation } from '@react-navigation/native'
 
 export const ZodiacSignListContainer = () => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigation<any>()
+  const navigate = useNavigation()
 
   const keyExtractor = (item: AdhZodiacSignItem) => item.zodiacSign;
 
   const onPress = (item: AdhZodiacSignItem) => {
     dispatch(horoscopeActions.setUserZodiacSignItem(item))
-    navigate.navigate('Horoscope Card')
+    navigate.navigate(AppRoutes.card)
   }
 
   return (

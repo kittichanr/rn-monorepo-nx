@@ -1,2 +1,2 @@
 export { AdhZodiacSignItem } from './zodiac-sign-item'
-export { AztroHoroscpeResponse, transfromAztroHoroscpeResponseToAdhHoroscope } from './horoscope'
+export { AztroHoroscpeResponse, transfromAztroHoroscpeResponseToAdhHoroscope ,AdhHoroscope} from './horoscope'

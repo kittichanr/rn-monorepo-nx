@@ -6,8 +6,9 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { AdhZodiacSignItem } from '@rn-monorepo-nx/models';
+import { AdhHoroscopeDay, AdhZodiacSignItem, AdhHoroscope, AdhZodiacSign, transfromAztroHoroscpeResponseToAdhHoroscope, LoadingStatus } from '@rn-monorepo-nx/models';
 import { RootState } from '../root/types';
+import { aztroService } from '@rn-monorepo-nx/services';
 
 export const HOROSCOPE_FEATURE_KEY = 'horoscope';
 
@@ -19,41 +20,27 @@ export interface HoroscopeEntity {
 }
 
 export interface HoroscopeState extends EntityState<HoroscopeEntity> {
-  loadingStatus: 'not loaded' | 'loading' | 'loaded' | 'error';
+  loadingStatus: LoadingStatus;
   error: string | null;
   zodiacSignItem?: AdhZodiacSignItem;
+  day?: AdhHoroscopeDay;
+  horoscope?: AdhHoroscope;
 }
 
 export const horoscopeAdapter = createEntityAdapter<HoroscopeEntity>();
 
-/**
- * Export an effect using createAsyncThunk from
- * the Redux Toolkit: https://redux-toolkit.js.org/api/createAsyncThunk
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(fetchHoroscope())
- * }, [dispatch]);
- * ```
- */
-export const fetchHoroscope = createAsyncThunk(
-  'horoscope/fetchStatus',
-  async (_, thunkAPI) => {
-    /**
-     * Replace this with your custom fetch call.
-     * For example, `return myApi.getHoroscopes()`;
-     * Right now we just return an empty array.
-     */
-    return Promise.resolve([]);
+
+export const fetchHoroscope = createAsyncThunk<
+  AdhHoroscope,
+  { zodiacSign: AdhZodiacSign, day: AdhHoroscopeDay }
+>('horoscope/fetchStatus', async ({ zodiacSign, day }, { rejectWithValue }) => {
+  try {
+    const horoscopeResponse = await aztroService.getHoroscope(zodiacSign, day);
+    return transfromAztroHoroscpeResponseToAdhHoroscope(horoscopeResponse);
+  } catch (error) {
+    return rejectWithValue({ error });
   }
-);
+});
 
 export const initialHoroscopeState: HoroscopeState =
   horoscopeAdapter.getInitialState({
@@ -78,8 +65,8 @@ export const horoscopeSlice = createSlice({
       })
       .addCase(
         fetchHoroscope.fulfilled,
-        (state: HoroscopeState, action: PayloadAction<HoroscopeEntity[]>) => {
-          horoscopeAdapter.setAll(state, action.payload);
+        (state: HoroscopeState, action: PayloadAction<AdhHoroscope>) => {
+          state.horoscope = action.payload;
           state.loadingStatus = 'loaded';
         }
       )
@@ -92,50 +79,30 @@ export const horoscopeSlice = createSlice({
   },
 });
 
-/*
- * Export reducer for store configuration.
- */
 export const horoscopeReducer = horoscopeSlice.reducer;
 
-/*
- * Export action creators to be dispatched. For use with the `useDispatch` hook.
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(horoscopeActions.add({ id: 1 }))
- * }, [dispatch]);
- * ```
- *
- * See: https://react-redux.js.org/next/api/hooks#usedispatch
- */
-export const horoscopeActions = horoscopeSlice.actions;
-
-/*
- * Export selectors to query state. For use with the `useSelector` hook.
- *
- * e.g.
- * ```
- * import { useSelector } from 'react-redux';
- *
- * // ...
- *
- * const entities = useSelector(selectAllHoroscope);
- * ```
- *
- * See: https://react-redux.js.org/next/api/hooks#useselector
- */
+export const horoscopeActions = { fetchHoroscope, ...horoscopeSlice.actions };
 
 const { selectAll, selectEntities } = horoscopeAdapter.getSelectors();
 
 export const getHoroscopeState = (rootState: RootState): HoroscopeState =>
   rootState[HOROSCOPE_FEATURE_KEY];
+
+const getUserZodiacItem = (
+  rootState: RootState
+): AdhZodiacSignItem | undefined => getHoroscopeState(rootState).zodiacSignItem;
+
+const getUserZodiac = (
+  rootState: RootState
+): AdhZodiacSign | undefined => getUserZodiacItem(rootState)?.zodiacSign;
+
+const getUserHoroscope = (rootState: RootState): AdhHoroscope | undefined =>
+  getHoroscopeState(rootState).horoscope;
+
+const getHoroscopeLoadingStatus = (rootState: RootState): LoadingStatus =>
+  getHoroscopeState(rootState).loadingStatus;
+
+export const horoscopeSelectors = { getUserZodiacItem, getUserZodiac, getUserHoroscope, getHoroscopeLoadingStatus };
 
 export const selectAllHoroscope = createSelector(getHoroscopeState, selectAll);
 

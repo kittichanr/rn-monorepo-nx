@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HoroscopeCard, ZodiacSignListContainer } from '@rn-monorepo-nx/ui';
+import {  HoroscopeCardContainer, ZodiacSignListContainer } from '@rn-monorepo-nx/ui';
 
 import { Provider } from 'react-redux';
 import { rootStore } from '@rn-monorepo-nx/store';
@@ -19,7 +19,7 @@ const App = () => {
             name="Zodiac Sign List"
             component={ZodiacSignListContainer}
           />
-          <Stack.Screen name="Horoscope Card" component={HoroscopeCard} />
+          <Stack.Screen name="Horoscope Card" component={HoroscopeCardContainer} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
