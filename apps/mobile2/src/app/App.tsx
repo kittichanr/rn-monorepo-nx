@@ -1,19 +1,27 @@
 import * as React from 'react';
-import { ZodiacSignList } from '@rn-monorepo-nx/ui';
-import { Header } from '@rneui/base';
-import { SafeAreaView } from 'react-native';
+import { HoroscopeCard, ZodiacSignListContainer } from '@rn-monorepo-nx/ui';
+
 import { Provider } from 'react-redux';
 import { rootStore } from '@rn-monorepo-nx/store';
 
 import 'react-native-devsettings';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <Provider store={rootStore}>
-      <SafeAreaView>
-        <Header centerComponent={{ text: 'Daily Horoscope' }} />
-        <ZodiacSignList />
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Zodiac Sign List"
+            component={ZodiacSignListContainer}
+          />
+          <Stack.Screen name="Horoscope Card" component={HoroscopeCard} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 };

@@ -19,6 +19,9 @@
     "react-redux": "*",
     "redux-logger": "*",
     "@react-native-async-storage/async-storage": "*",
-    "react-native-devsettings": "*"
+    "react-native-devsettings": "*",
+    "@react-native-masked-view/masked-view": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/stack": "*"
   }
 }

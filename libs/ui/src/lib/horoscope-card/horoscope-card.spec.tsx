@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import ZodiacSignList from './zodiac-sign-list';
+import HoroscopeCard from './horoscope-card';
 
-describe('ZodiacSignList', () => {
+describe('HoroscopeCard', () => {
   it('should render successfully', () => {
-    const { root } = render(<ZodiacSignList />);
+    const { root } = render(<HoroscopeCard />);
     expect(root).toBeTruthy();
   });
 });
