@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@rn-monorepo-nx/models": ["libs/models/src/index.ts"],
+      "@rn-monorepo-nx/services": ["libs/services/src/index.ts"],
       "@rn-monorepo-nx/store": ["libs/store/src/index.ts"],
       "@rn-monorepo-nx/ui": ["libs/ui/src/index.ts"]
     }
