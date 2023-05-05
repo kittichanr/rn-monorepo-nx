@@ -9,7 +9,7 @@
     "react-native": "*",
     "react-native-svg": "*",
     "metro-config": "*",
-    "@rneui/base": "*",
+    "react-native-paper": "*",
     "react-native-gesture-handler": "*",
     "react-native-reanimated": "*",
     "react-native-safe-area-context": "*",

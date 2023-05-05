@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useRef, useState } from "react";
-import {
-  SafeAreaView,
+import {  
   StyleSheet,
   ScrollView,
   View,
@@ -10,6 +9,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 import Icon from 'react-native-vector-icons/FontAwesome';
 

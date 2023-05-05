@@ -1,4 +1,4 @@
-import { AdhZodiacSign } from "../enums";
+import { AdhZodiacSign } from "./zodiac-sign";
 
 export interface AztroHoroscpeResponse {
   date_range: string;
@@ -14,7 +14,7 @@ export interface AztroHoroscpeResponse {
 export interface AdhHoroscope {
   currentDate: Date;
   description: string;
-  compatibility: AdhZodiacSign;
+  compatibility:  AdhZodiacSign;
   mood: string;
   color: string;
   luckyNumber: number;

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "*",
-    "@rneui/base": "*",
+    "react-native-paper": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
     "metro-config": "*",

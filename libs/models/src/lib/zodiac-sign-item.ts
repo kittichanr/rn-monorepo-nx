@@ -1,4 +1,4 @@
-import { AdhZodiacSign } from '../enums/zodiac-sign';
+import { AdhZodiacSign } from './zodiac-sign';
 
 export interface AdhZodiacSignItem {
   icon: string;

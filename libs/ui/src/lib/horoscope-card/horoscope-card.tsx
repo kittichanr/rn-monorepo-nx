@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, SafeAreaView, ScrollView } from 'react-native';
+import {  ScrollView } from 'react-native';
 
-import { Card, Text } from '@rneui/base';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ActivityIndicator, Avatar, Card, DataTable, Divider, Text } from 'react-native-paper';
 import { horoscopeActions, horoscopeSelectors, useAppDispatch, useAppSelector } from '@rn-monorepo-nx/store';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function HoroscopeCardContainer() {
   const dispatch = useAppDispatch()
@@ -24,34 +24,46 @@ export function HoroscopeCardContainer() {
     <SafeAreaView>
       <ScrollView>
         <Card>
-          {zodiacItem?.icon && <Card.Title>
-            <Icon name={zodiacItem?.icon} size={40} />
-          </Card.Title>}
-
-          <Card.Title>{zodiacItem?.zodiacSign}</Card.Title>
-          <Card.Divider />
-          <Text h4 style={{ width: '100%', textAlign: 'center' }}>
-            Your Horoscope for Today
-          </Text>
-          {loadingStatus === 'loaded' ? (
+          {zodiacItem && (
             <>
-              <Text style={{ marginTop: 10 }}>{horoscope?.description}</Text>
-              <Text style={{ marginTop: 10 }}>Mood: {horoscope?.mood}</Text>
-              <Text style={{ marginTop: 10 }}>Color: {horoscope?.color}</Text>
-              <Text style={{ marginTop: 10 }}>
-                Compatibility: {horoscope?.compatibility}
-              </Text>
-              <Text style={{ marginTop: 10 }}>
-                Lucky Number: {horoscope?.luckyNumber}
-              </Text>
-              <Text style={{ marginTop: 10 }}>
-                Lucky Time: {horoscope?.luckyTime}
-              </Text>
+              <Avatar.Icon icon={zodiacItem?.icon} size={40} />
+              <Card.Title title={zodiacItem?.zodiacSign}></Card.Title>
+            </>
+          )}
+          <Divider />
+          <Text>Your Horoscope for Today</Text>
+          {loadingStatus === 'loaded' && horoscope ? (
+            <>
+              <Text variant="bodyLarge">{horoscope.description}</Text>
+              <DataTable>
+                <DataTable.Row>
+                  <DataTable.Cell>Mood</DataTable.Cell>
+                  <DataTable.Cell>{horoscope.mood}</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                  <DataTable.Cell>Color</DataTable.Cell>
+                  <DataTable.Cell>{horoscope.color}</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                  <DataTable.Cell>Compatibility</DataTable.Cell>
+                  <DataTable.Cell>{horoscope.compatibility}</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                  <DataTable.Cell>Lucky Number</DataTable.Cell>
+                  <DataTable.Cell>{horoscope.luckyNumber}</DataTable.Cell>
+                </DataTable.Row>
+                <DataTable.Row>
+                  <DataTable.Cell>Lucky Time</DataTable.Cell>
+                  <DataTable.Cell>{horoscope.luckyTime}</DataTable.Cell>
+                </DataTable.Row>
+              </DataTable>
             </>
           ) : loadingStatus === 'error' ? (
-            <Text h2>Oops! Something went wrong. Please try agian.</Text>
+            <Text variant="displayMedium">
+              Oops! Something went wrong. Please try again.
+            </Text>
           ) : (
-            <ActivityIndicator />
+            <ActivityIndicator animating={true} size="large" />
           )}
         </Card>
       </ScrollView>

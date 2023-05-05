@@ -5,8 +5,7 @@ import {
   AdhZodiacSignList,
   AppRoutes,
 } from '@rn-monorepo-nx/models';
-import { ListItem } from '@rneui/base';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { List } from 'react-native-paper';
 import { horoscopeActions, useAppDispatch } from '@rn-monorepo-nx/store';
 
 import { useNavigation } from '@react-navigation/native'
@@ -27,13 +26,12 @@ export const ZodiacSignListContainer = () => {
       keyExtractor={keyExtractor}
       data={AdhZodiacSignList}
       renderItem={({ item }) => (
-        <ListItem bottomDivider onPress={() => onPress(item)}>
-          <Icon name={item.icon} />
-          <ListItem.Content>
-            <ListItem.Title>{item.zodiacSign}</ListItem.Title>
-          </ListItem.Content>
-          <ListItem.Chevron />
-        </ListItem>
+        <List.Item
+        title={item.zodiacSign}
+        left={(props) => <List.Icon {...props} icon={item.icon} />}
+        right={(props) => <List.Icon {...props} icon='chevron-right' />}
+        onPress={() => onPress(item)}
+      ></List.Item>
       )}
     />
   );

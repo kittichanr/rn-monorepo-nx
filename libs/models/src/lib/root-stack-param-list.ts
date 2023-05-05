@@ -1,4 +1,4 @@
-import { AppRoutes } from "../enums/app-routes";
+import { AppRoutes } from "./app-routes";
 
 export type RootStackParamList = {
   [AppRoutes.list]: undefined;

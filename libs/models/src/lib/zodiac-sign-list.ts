@@ -1,5 +1,5 @@
-import { AdhZodiacSignItem } from '../interfaces/zodiac-sign-item';
-import { AdhZodiacSign } from '../enums/zodiac-sign';
+import { AdhZodiacSignItem } from './zodiac-sign-item';
+import { AdhZodiacSign } from './zodiac-sign';
 
 export const AdhZodiacSignList: AdhZodiacSignItem[] = [
   {
