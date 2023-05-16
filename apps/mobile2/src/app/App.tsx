@@ -1,10 +1,9 @@
 import * as React from 'react';
-import {  HoroscopeCardContainer, ZodiacSignListContainer } from '@rn-monorepo-nx/ui';
+import { HoroscopeCardContainer, ZodiacSignListContainer } from '@rn-monorepo-nx/ui';
 
 import { Provider } from 'react-redux';
 import { rootStore } from '@rn-monorepo-nx/store';
 
-import 'react-native-devsettings';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
